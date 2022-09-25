@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private userAgent: UserAgentService,
     private pubsub: PubsubService,
     private cdr: ChangeDetectorRef,
-    private menuService: MenuService
+    private menuService: MenuService,
   ) {}
 
   ngOnInit() {
