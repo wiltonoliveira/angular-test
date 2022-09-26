@@ -1,37 +1,66 @@
 <div class="wrapper">
+  <div class="add-note-wrapper">
+    <div class="add-note-btn">
+      <button
+        type="button"
+        class="btn btn-primary btn-lg"
+        role="button"
+        (click)="onAddNote()"
+        [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseBasic"
+      >
+        Add Note
+      </button>
+    </div>
+    <div
+      class="collapse"
+      id="collapseBasic"
+      [collapse]="isCollapsed"
+      [isAnimated]="true"
+    >
+      <div class="wrapper">
+        <form (ngSubmit)="addNote()">
+          <div class="row title">
+            <label>Title</label>
+            <input type="text" [(ngModel)]="title" name="title" />
+          </div>
+          <div class="row description">
+            <label>Description</label>
+            <textarea [(ngModel)]="content" name="content"></textarea>
+            <button type="submit">Save Note</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
-        <th class="action" scope="col">
-          <button (click)="addNote()" type="button" class="btn btn-primary btn-lg">Add Note</button>
-        </th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
+      <tr *ngFor="let note of notes">
+        <th scope="row">{{ note.title }}</th>
+        <td>{{ note.content }}</td>
         <td class="action">
-          <button type="button" class="btn btn-danger">Delete</button>
-          <button type="button" class="btn btn-warning">Edit</button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td class="action">
-          <button type="button" class="btn btn-danger">Delete</button>
-          <button type="button" class="btn btn-warning">Edit</button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td class="action">
-          <button type="button" class="btn btn-danger">Delete</button>
-          <button type="button" class="btn btn-warning">Edit</button>
+          <button
+            (click)="deleteNote(note)"
+            type="button"
+            class="btn btn-danger"
+          >
+            Delete
+          </button>
+          <button
+            (click)="editNote(note)"
+            type="button"
+            class="btn btn-warning"
+          >
+            Edit
+          </button>
         </td>
       </tr>
     </tbody>
