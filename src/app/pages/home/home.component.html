@@ -1,28 +1,14 @@
 <div class="wrapper">
   <div class="add-note-wrapper">
     <div class="header">
-      <input
-        type="text"
-        placeholder="Filter"
-        (keyup)="filter($event.target.value)"
-      />
-      <button
-        type="button"
-        class="btn btn-primary btn"
-        role="button"
-        (click)="onAddNote()"
-        [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapseBasic"
-      >
+      <input type="text" placeholder="Filter" (keyup)="filter($event.target.value)" />
+      <button type="button" class="btn btn-primary btn" role="button" (click)="onAddNote()"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
         Add Note
       </button>
     </div>
-    <div
-      class="collapse"
-      id="collapseBasic"
-      [collapse]="isCollapsed"
-      [isAnimated]="true"
-    >
+
+    <div class="collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
       <div class="">
         <form (ngSubmit)="addNote()">
           <div class="row title">
@@ -37,12 +23,14 @@
         </form>
       </div>
     </div>
+
   </div>
 
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" (click)="sortResultsByTitle()" style="cursor: pointer;">Title <i [className]="isSortedByAsc ? 'fa fa-angle-up' : 'fa fa-angle-down'" style="font-size:16px"></i></th>
+        <th scope="col" (click)="sortResultsByTitle()" style="cursor: pointer;">Title <i
+            [className]="isSortedByAsc ? 'fa fa-angle-up' : 'fa fa-angle-down'" style="font-size:16px"></i></th>
         <th scope="col">Description</th>
         <th scope="col"></th>
       </tr>
@@ -52,18 +40,10 @@
         <th scope="row">{{ note.title }}</th>
         <td>{{ note.content }}</td>
         <td class="action">
-          <button
-            (click)="deleteNote(note)"
-            type="button"
-            class="btn btn-danger"
-          >
+          <button (click)="deleteNote(note)" type="button" class="btn btn-danger">
             Delete
           </button>
-          <button
-            (click)="editNote(note)"
-            type="button"
-            class="btn btn-warning"
-          >
+          <button (click)="editNote(note)" type="button" class="btn btn-warning">
             Edit
           </button>
         </td>
