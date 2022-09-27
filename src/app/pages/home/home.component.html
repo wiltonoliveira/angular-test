@@ -1,9 +1,14 @@
 <div class="wrapper">
   <div class="add-note-wrapper">
-    <div class="add-note-btn">
+    <div class="header">
+      <input
+        type="text"
+        placeholder="Filter"
+        (keyup)="filter($event.target.value)"
+      />
       <button
         type="button"
-        class="btn btn-primary btn-lg"
+        class="btn btn-primary btn"
         role="button"
         (click)="onAddNote()"
         [attr.aria-expanded]="!isCollapsed"
@@ -18,7 +23,7 @@
       [collapse]="isCollapsed"
       [isAnimated]="true"
     >
-      <div class="wrapper">
+      <div class="">
         <form (ngSubmit)="addNote()">
           <div class="row title">
             <label>Title</label>
@@ -37,13 +42,13 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Title</th>
+        <th scope="col" (click)="sortResultsByTitle()" style="cursor: pointer;">Title <i [className]="isSortedByAsc ? 'fa fa-angle-up' : 'fa fa-angle-down'" style="font-size:16px"></i></th>
         <th scope="col">Description</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let note of notes">
+      <tr *ngFor="let note of filteredNotes">
         <th scope="row">{{ note.title }}</th>
         <td>{{ note.content }}</td>
         <td class="action">

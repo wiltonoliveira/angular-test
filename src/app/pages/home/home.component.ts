@@ -14,6 +14,9 @@ export class HomeComponent {
   content: string;
   id: number;
   notes: any;
+  filteredNotes: Array<any>;
+  isSortedByAsc = false;
+
 
   constructor(private http: HttpClient) {
     this.apiURL = "https://6078ed5ae7f4f50017184e92.mockapi.io/api/v1/todo";
@@ -26,14 +29,15 @@ export class HomeComponent {
   getAllNotes() {
     this.http.get(`${this.apiURL}`).subscribe((resultado) => {
       this.notes = resultado;
+      this.filteredNotes = this.notes;
     });
   }
 
-  getNote(id: number) {
+  /*   getNote(id: number) {
     this.http
       .get(`${this.apiURL}/${id}`)
       .subscribe((resultado) => console.log(resultado));
-  }
+  } */
 
   editNote(note: any) {
     this.title = note.title;
@@ -80,5 +84,51 @@ export class HomeComponent {
     this.title = "";
     this.content = "";
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  filter(query: string) {
+    query = query.toLowerCase().trim();
+    let terms: string[] = query.split(" ");
+    terms = this.removeDuplicatesResults(terms);
+    terms.forEach((term) => {
+      let results: Array<any> = this.relevanteNotes(term);
+      let uniqueResults = this.removeDuplicatesResults(results);
+      this.filteredNotes = uniqueResults;
+    });
+  }
+
+  removeDuplicatesResults(arr: Array<any>): Array<any> {
+    let uniqueResults: Set<any> = new Set<any>();
+
+    arr.forEach((e) => uniqueResults.add(e));
+    return Array.from(uniqueResults);
+  }
+
+  relevanteNotes(query: string): Array<any> {
+    query.toLowerCase().trim();
+    let relevanteNotes = this.notes.filter((note) => {
+      if (note.content && note.content.toLowerCase().includes(query)) {
+        return true;
+      }
+      if (note.title && note.title.toLowerCase().includes(query)) {
+        return true;
+      }
+      return false;
+    });
+    return relevanteNotes;
+  }
+
+  sortResultsByTitle() {
+    if (!this.isSortedByAsc) {
+      this.filteredNotes.sort(function (a, b) {
+        return a.title < b.title ? -1 : a.nome > b.nome ? 1 : 0;
+      });
+      this.isSortedByAsc = true;
+    } else {
+      this.filteredNotes.sort(function (a, b) {
+        return a.title > b.title ? -1 : a.nome < b.nome ? 1 : 0;
+      });
+      this.isSortedByAsc = false;
+    }
   }
 }

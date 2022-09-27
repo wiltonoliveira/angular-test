@@ -1,78 +1,83 @@
 .action {
-    text-align: right;
-    .btn {
-        margin-right: 0.5rem;
-    }
+  text-align: right;
+  .btn {
+    margin-right: 0.5rem;
+  }
 }
 
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .add-note-wrapper {
-    width: 100%;
-    justify-content: right;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    .add-note-btn {
-        display: flex;
-        justify-content: right;
-        margin-right: 1rem;
+  width: 100%;
+  justify-content: right;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    input {
+      width: 40rem;
+      font-size: 1rem;
+      margin-right: 1rem;
     }
+  }
 }
 
-
 form {
-    border-radius: 5px;
-    width: 50rem;
-    height: fit-content;
+  border-radius: 5px;
+  width: 100%;
+  height: fit-content;
 }
 
 form :where(input, textarea) {
-    width: 100%;
-    height: 3rem;
-    border-radius: 4px;
-    outline: none;
-    border: 1px solid #999;
+  width: 100%;
+  height: 3rem;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #999;
 }
 
 form .row {
-    margin: 2rem;
+  margin: 2rem;
 }
 
 form .row label {
-    display: block;
-    font-size: 18px;
-    margin-bottom: 0.5rem;
+  display: block;
+  font-size: 18px;
+  margin-bottom: 0.5rem;
 }
 
 form .row input {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 form .row textarea {
-    height: 6rem;
-    font-size: 1rem;
-    resize: none;
+  height: 6rem;
+  font-size: 1rem;
+  resize: none;
 }
 
 form .row button {
-    width: 100%;
-    height: 3rem;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #4d4dd9;
-    transition-duration: 0.2s;
-   margin-top: 0.5rem;
+  width: 100%;
+  height: 3rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4d4dd9;
+  transition-duration: 0.2s;
+  margin-top: 0.5rem;
 }
 
 form .row button:hover {
-    background-color: #6464d8;
+  background-color: #6464d8;
 }
